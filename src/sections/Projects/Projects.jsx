@@ -1,7 +1,8 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
+import { motion } from 'framer-motion';
 import styles from './ProjectsStyles.module.css';
-import bytebite from '../../assets/bytebite.png';
+import byytebite from '../../assets/byytebite.png';
 import chuttbati from '../../assets/chuttbati.png';
 import quiztopia from '../../assets/quiztopia.png';
 import artistic from '../../assets/artistic.png';
@@ -11,7 +12,7 @@ import niroda from '../../assets/niroda.png';
 function Projects() {
   const projects = [
     {
-      src: bytebite,
+      src: byytebite,
       link: "https://bytebite.netlify.app/",
       title: "ByteBite",
       description: "My First Website"
@@ -48,32 +49,130 @@ function Projects() {
     }
   ];
 
+  const containerVariants = {
+    hidden: { 
+      opacity: 0,
+      y: 20
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        when: "beforeChildren",
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const projectCardVariants = {
+    hidden: {
+      opacity: 0,
+      y: 30,
+      scale: 0.9
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut"
+      }
+    },
+    hover: {
+      y: -10,
+      transition: {
+        duration: 0.3,
+        ease: "easeOut"
+      }
+    }
+  };
+
+  const overlayVariants = {
+    hidden: {
+      opacity: 0
+    },
+    hover: {
+      opacity: 1,
+      transition: {
+        duration: 0.3
+      }
+    }
+  };
+
   return (
-    <section id="projects" className={styles.projectsSection}>
-      <div className={styles.sectionId}>PROJECTS</div>
-      <div className={styles.projectsGrid}>
+    <motion.section 
+      id="projects" 
+      className={styles.projectsSection}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.1 }}
+      variants={containerVariants}
+    >
+      <motion.div 
+        className={styles.sectionId}
+        variants={{
+          hidden: { opacity: 0, x: -20 },
+          visible: { opacity: 1, x: 0 }
+        }}
+      >
+        PROJECTS
+      </motion.div>
+      <motion.div 
+        className={styles.projectsGrid}
+        variants={containerVariants}
+      >
         {projects.map((project, index) => (
-          <a 
+          <motion.a 
             key={index}
             href={project.link}
             target="_blank"
             rel="noopener noreferrer"
             className={styles.projectCard}
+            variants={projectCardVariants}
+            whileHover="hover"
+            initial="hidden"
+            animate="visible"
           >
             <div className={styles.imageWrapper}>
-              <img src={project.src} alt={project.title} />
-              <div className={styles.overlay}>
-                <span className={styles.viewProject}>View Project</span>
-              </div>
+              <motion.img 
+                src={project.src} 
+                alt={project.title}
+                initial={{ scale: 1 }}
+                whileHover={{ scale: 1.1 }}
+                transition={{ duration: 0.3 }}
+              />
+              <motion.div 
+                className={styles.overlay}
+                variants={overlayVariants}
+                initial="hidden"
+                whileHover="hover"
+              >
+                <motion.span 
+                  className={styles.viewProject}
+                  initial={{ y: 20, opacity: 0 }}
+                  whileHover={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  View Project
+                </motion.span>
+              </motion.div>
             </div>
-            <div className={styles.projectInfo}>
+            <motion.div 
+              className={styles.projectInfo}
+              variants={{
+                hidden: { opacity: 0, y: 10 },
+                visible: { opacity: 1, y: 0 }
+              }}
+            >
               <h3>{project.title}</h3>
               <p>{project.description}</p>
-            </div>
-          </a>
+            </motion.div>
+          </motion.a>
         ))}
-      </div>
-    </section>
+      </motion.div>
+    </motion.section>
   );
 }
 
