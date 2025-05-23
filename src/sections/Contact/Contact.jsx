@@ -1,126 +1,99 @@
-// eslint-disable-next-line no-unused-vars
-import React from 'react';
+// Contact.jsx
+import { useTheme } from '../../common/ThemeContext';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import Lottie from 'lottie-react';
 import styles from './ContactStyles.module.css';
 
-function Contact() {
-  const containerVariants = {
-    hidden: { 
-      opacity: 0,
-      y: 20
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        when: "beforeChildren",
-        staggerChildren: 0.2
-      }
-    }
-  };
 
-  const formGroupVariants = {
-    hidden: {
-      opacity: 0,
-      x: -20
-    },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        duration: 0.5,
-        ease: "easeOut"
-      }
-    }
-  };
+// Correct import paths
 
-  const inputVariants = {
-    focus: {
-      scale: 1.02,
-      transition: {
-        duration: 0.2
-      }
-    }
-  };
+import basketballAnimation from '../../assets/basket.json';
+import karateAnimation from '../../assets/Karate.json';
+import drawingAnimation from '../../assets/draw.json';
+import musicAnimation from '../../assets/music.json';
+import workoutAnimation from '../../assets/gym.json';
+
+const activities = [
+  {
+    text: "I play basketball",
+    animation: basketballAnimation
+  },
+  {
+    text: "I practice karate",
+    animation: karateAnimation
+  },
+  {
+    text: "I workout daily",
+    animation: workoutAnimation
+  },
+  {
+    text: "I love to draw",
+    animation: drawingAnimation
+  },
+  {
+    text: "I listen to music",
+    animation: musicAnimation
+  }
+];
+
+export default function MyPassions() {
+  const { theme } = useTheme(); // Get current theme
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % activities.length);
+    }, 2500);
+    
+    return () => clearInterval(interval);
+  }, []);
+
+  const currentActivity = activities[currentIndex];
 
   return (
-    <motion.section 
-      id="contact" 
-      className={styles.container}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.1 }}
-      variants={containerVariants}
+    <section 
+      className={styles.container} 
+      id="passions"
+      data-theme={theme} // Explicitly set theme
     >
-      <motion.h1 
-        className="sectionTitle"
-        variants={{
-          hidden: { opacity: 0, y: -20 },
-          visible: { opacity: 1, y: 0 }
+      <h2 className={styles.sectionTitle}>Beyond Coding</h2>
+      <p className={styles.sectionSubtitle}>What I enjoy when I&apos;m not developing</p>
+      
+      <motion.div 
+        key={currentIndex}
+        className={styles.activityContainer}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ 
+          opacity: 1, 
+          y: 0,
+          transition: { duration: 0.5 }
         }}
+        exit={{ opacity: 0, y: -20 }}
       >
-        Contact
-      </motion.h1>
-      <motion.form 
-        action=""
-        variants={containerVariants}
-      >
-        <motion.div 
-          className="formGroup"
-          variants={formGroupVariants}
+        <motion.div
+          className={styles.lottieContainer}
+          animate={{
+            rotate: [0, -5, 5, -5, 0],
+            y: [0, -5, 5, -5, 0],
+            transition: {
+              duration: 1.8,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }
+          }}
         >
-          <label htmlFor="name" hidden>Name</label>
-          <motion.input
-            type="text"
-            name="name"
-            id="name"
-            placeholder="Name"
-            required
-            variants={inputVariants}
-            whileFocus="focus"
+          <Lottie 
+            animationData={currentActivity.animation} 
+            style={{ width: 300, height: 300 }}
+            loop={true}
           />
         </motion.div>
-        <motion.div 
-          className="formGroup"
-          variants={formGroupVariants}
-        >
-          <label htmlFor="email" hidden>Email</label>
-          <motion.input
-            type="email"
-            name="email"
-            id="email"
-            placeholder="Email"
-            required
-            variants={inputVariants}
-            whileFocus="focus"
-          />
-        </motion.div>
-        <motion.div 
-          className="formGroup"
-          variants={formGroupVariants}
-        >
-          <label htmlFor="message" hidden>Message</label>
-          <motion.textarea
-            name="message"
-            id="message"
-            placeholder="Message"
-            required
-            variants={inputVariants}
-            whileFocus="focus"
-          ></motion.textarea>
-        </motion.div>
-        <motion.input 
-          className="hover btn"
-          type="submit" 
-          value="Submit"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          transition={{ duration: 0.2 }}
-        />
-      </motion.form>
-    </motion.section>
+        
+        <p className={styles.activityText}>
+          {currentActivity.text}
+        </p>
+      </motion.div>
+    </section>
   );
 }
-
-export default Contact;

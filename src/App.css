@@ -3,19 +3,25 @@
   --btn-color: #0987f2;
   --btn-text-color: #fff;
   --project-card-bg: #ffffff00;
-  --text-color: #222;
+  --text-color: #000000;
   --form-text-color: #555;
   --footer-text-color: #888;
+  --passions-bg: #fff; /* Light theme background */
+  --passions-text: #212529;
+  --passions-subtext: #495057;
 }
 
 [data-theme='dark'] {
   --background-color: #222;
   --btn-color: #fff;
-  --btn-text-color: #222;
+  --btn-text-color: #000000;
   --project-card-bg: #fff;
   --text-color: #fff;
   --form-text-color: #fff;
   --footer-text-color: #bbb;
+  --passions-bg: #222; /* Dark theme background */
+  --passions-text: #f8f9fa;
+  --passions-subtext: #adb5bd;
 }
 
 body {

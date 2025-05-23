@@ -1,178 +1,204 @@
-.container {
+/* Hero Section */
+.heroSection {
+  padding: 4rem 1rem;
+  min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 20px;
-  text-align: center;
-  height: 100dvh;
-  min-height: 500px;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-/* Theme-specific styles */
-.light {
-  background-color: var(--bg-light);
-  color: var(--text-dark);
-}
-
-.dark {
-  background-color: var(--bg-dark);
-  color: var(--text-light);
-}
-
-.hero {
-  max-width: 200px;
-  opacity: 0;
-  transform: scale(0.95);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-.hero.loaded {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.info {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-.info.loaded {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.fadeIn {
-  opacity: 0;
-  animation: fadeIn 0.5s ease forwards;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.socialIcons {
-  display: flex;
-  gap: 25px;
-  justify-content: center;
-}
-
-.iconLink {
-  margin: 0;
+  align-items: center;
   position: relative;
+  background-color: var(--background-color);
+  transition: background-color 0.3s ease;
 }
 
-.iconHover {
-  width: 30px;
-  transition: transform 0.3s ease, filter 0.2s ease;
+.heroContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
 }
 
-.iconHover:hover {
-  transform: scale(1.2);
-  filter: brightness(1.2);
-}
-
-.colorModeContainer {
-  position: relative;
-}
-
-.colorMode {
+/* Theme Toggle */
+.themeToggle {
   position: absolute;
-  right: 0;
-  width: 25px;
+  top: 2rem;
+  right: 2rem;
+  z-index: 10;
+}
+
+.themeIcon {
+  width: 32px;
+  height: 32px;
   cursor: pointer;
 }
 
-.description {
-  max-width: 24ch;
-  margin: 0 auto;
-  text-align: center;
-  font-size: 1.5rem;
-  line-height: 1.5;
+/* Content Layout */
+.contentWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
 }
 
-.resumeButton {
-  background-color: var(--btn-color);
-  color: var(--btn-text-color);
-  border: none;
-  border-radius: 20px;
-  width: 126px;
-  height: 50px;
-  font-size: 20px;
-  font-weight: bold;
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
+@media (min-width: 768px) {
+  .contentWrapper {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
 
-.resumeButton::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
+/* Lottie Animation */
+.lottieContainer {
   width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.2),
-    transparent
-  );
-  transition: 0.5s;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
-.resumeButton:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+.lottieAnimation {
+  width: 100%;
+  height: auto;
 }
 
-.resumeButton:hover::after {
-  left: 100%;
+/* Text Content */
+.content {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
-.resumeButton:active {
-  transform: translateY(2px);
-  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25);
+@media (min-width: 768px) {
+  .content {
+    text-align: left;
+    margin: 0;
+  }
 }
 
 .title {
   font-size: 2.5rem;
-  font-weight: bold;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+  font-family: 'Rubik', sans-serif;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
 }
 
 .subtitle {
-  font-size: 1.8rem;
-  color: var(--secondary-text);
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-bottom: 1.5rem;
+  color: var(--text-color);
+  opacity: 0.9;
+  transition: color 0.3s ease, opacity 0.3s ease;
 }
 
-@media (width >= 800px) {
-  .container {
-    flex-direction: row-reverse;
-    align-items: center;
-    justify-content: space-evenly;
-  }
+.description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  color: var(--text-color);
+  opacity: 0.8;
+  font-weight: 300;
+  transition: color 0.3s ease, opacity 0.3s ease;
+}
 
-  .hero {
-    max-width: 350px;
-    width: 350px;
+/* Social Links */
+.socialLinks {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.socialLink {
+  display: inline-flex;
+  position: relative;
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.socialIcon {
+  width: 28px;
+  height: 28px;
+  transition: all 0.3s ease;
+}
+
+/* Tooltip */
+.tooltip {
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--text-color);
+  color: var(--background-color);
+  padding: 0.3rem 0.8rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.socialLink:hover .tooltip {
+  opacity: 1;
+}
+
+/* Hover Effects */
+@media (hover: hover) {
+  .socialLink:hover {
+    background: rgba(0, 0, 0, 0.05);
+  }
+  
+  [data-theme="dark"] .socialLink:hover {
+    background: rgba(255, 255, 255, 0.1);
   }
 }
 
-@media (width >= 1400px) {
-  .hero {
-    max-width: 400px;
-    width: 400px;
+/* Resume Button */
+.resumeLink {
+  display: inline-block;
+  text-decoration: none;
+}
+
+.resumeButton {
+  background: var(--btn-color);
+  color: var(--btn-text-color);
+  border: none;
+  padding: 0.8rem 1.8rem;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .heroSection {
+    padding: 6rem 1rem 4rem;
+  text-align: center;
   }
+  
+  .title {
+    font-size: 2rem;
+  }
+  
+  .subtitle {
+    font-size: 1.2rem;
+  }
+  
+  .description {
+    font-size: 1rem;
+  }
+  
+  .socialLinks {
+    gap: 1rem;
+  }
+}
+
+/* Force text visibility in light mode */
+[data-theme="light"] .title,
+[data-theme="light"] .subtitle,
+[data-theme="light"] .description {
+  color: var(--text-color) !important;
 }

@@ -2,53 +2,38 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import styles from './ProjectsStyles.module.css';
-import byytebite from '../../assets/byytebite.png';
-import chuttbati from '../../assets/chuttbati.png';
-import quiztopia from '../../assets/quiztopia.png';
 import artistic from '../../assets/artistic.png';
 import naturalist from '../../assets/naturalist.png';
-import niroda from '../../assets/niroda.png';
+import insta from '../../assets/insta.png';
+import wandermate from '../../assets/app.png';
 
 function Projects() {
   const projects = [
-    {
-      src: byytebite,
-      link: "https://bytebite.netlify.app/",
-      title: "ByteBite",
-      description: "My First Website"
-    },
-    {
-      src: artistic,
-      link: "https://aartistic.netlify.app/",
-      title: "Artistic",
-      description: "A website I made for a photography business"
-    },
-    {
-      src: naturalist,
-      link: "https://naturalistchoc.netlify.app/",
-      title: "Naturalist",
-      description: "A website I made for a SL beverage company"
-    },
-    {
-      src: niroda,
-      link: "https://niroda.netlify.app/",
-      title: "Client Portfolio",
-      description: "A portfolio website I made for an individual"
-    },
-    {
-      src: chuttbati,
-      link: "https://chuttanbattichcha.netlify.app/",
-      title: "Chuttan Batichcha",
-      description: "Flappy Bird Game"
-    },
-    {
-      src: quiztopia,
-      link: "https://quizztopia.netlify.app/",
-      title: "Quiztopia",
-      description: "A Quiz Game"
-    }
-  ];
-
+  {
+    src: wandermate,
+    link: "https://github.com/ridmii/WanderMate",
+    title: "WanderMate",
+    description: "Android travel companion with real-time navigation, weather, and location services"
+  },
+  {
+    src: insta,
+    link: "https://github.com/ridmii/Insta-Clone",
+    title: "Instagram Clone",
+    description: "Functional Instagram replica with React and Firebase authentication"
+  },
+  {
+    src: artistic,
+    link: "https://aartistic.netlify.app/",
+    title: "Artistic",
+    description: "Elegant portfolio website for a photography business"
+  },
+  {
+    src: naturalist,
+    link: "https://naturalistchoc.netlify.app/",
+    title: "Naturalist",
+    description: "Product showcase for an organic beverage company"
+  },
+];
   const containerVariants = {
     hidden: { 
       opacity: 0,
