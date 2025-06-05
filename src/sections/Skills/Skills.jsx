@@ -3,6 +3,24 @@ import { motion } from 'framer-motion';
 import styles from './SkillsStyles.module.css';
 import { useTheme } from '../../common/ThemeContext';
 
+const ProficiencyIndicator = ({ level }) => {
+  const getLevelDescription = () => {
+    switch(level) {
+      case 'basic': return 'Basic';
+      case 'intermediate': return 'Intermediate';
+      case 'advanced': return 'Advanced';
+      case 'expert': return 'Expert';
+      default: return level;
+    }
+  };
+
+  return (
+    <div className={`${styles.proficiency} ${styles[level]}`}>
+      {getLevelDescription()}
+    </div>
+  );
+};
+
 const SkillItem = ({ skill, index }) => {
   return (
     <motion.div
@@ -13,15 +31,7 @@ const SkillItem = ({ skill, index }) => {
     >
       <div className={styles.skillHeader}>
         <div className={styles.skillName}>{skill.name}</div>
-        <div className={styles.skillValue}>{skill.value}%</div>
-      </div>
-      <div className={styles.skillBar}>
-        <motion.div
-          className={`${styles.skillLevel} ${styles[skill.level]}`}
-          initial={{ width: 0 }}
-          animate={{ width: `${skill.value}%` }}
-          transition={{ duration: 0.8, delay: index * 0.15 }}
-        />
+        <ProficiencyIndicator level={skill.level} />
       </div>
     </motion.div>
   );
@@ -46,31 +56,31 @@ const SkillCategory = ({ category, skills }) => {
 
 const SkillsSection = () => {
   const skillsData = [
-    {
-      category: 'Mobile Development',
-      skills: [
-        { name: 'Android (Java)', value: 90, level: 'expert' },
-        { name: 'Firebase', value: 85, level: 'advanced' },
-      ]
-    },
-    {
-      category: 'Frontend Development',
-      skills: [
-        { name: 'JavaScript', value: 88, level: 'advanced' },
-        { name: 'React', value: 85, level: 'advanced' },
-        { name: 'HTML/CSS', value: 90, level: 'expert' },
-      ]
-    },
-    {
-      category: 'Backend & Databases',
-      skills: [
-        { name: 'Node.js', value: 80, level: 'advanced' },
-        { name: 'SQL', value: 85, level: 'advanced' },
-        { name: 'MongoDB', value: 75, level: 'intermediate' },
-        { name: 'MySQL', value: 80, level: 'advanced' },
-      ]
-    }
-  ];
+  {
+    category: 'Backend Development',
+    skills: [
+      { name: 'Spring Boot', level: 'intermediate' },
+      { name: 'Node.js/Express', level: 'intermediate' },
+      { name: 'Spring MVC', level: 'intermediate' },
+      { name: 'Hibernate', level: 'intermediate' }
+    ]
+  },
+  {
+    category: 'Frontend Development',
+    skills: [
+      { name: 'React', level: 'intermediate' },
+      { name: 'Bootstrap', level: 'intermediate' },
+      { name: 'jQuery', level: 'basic' }
+    ]
+  },
+  {
+    category: 'Databases',
+    skills: [
+      { name: 'MongoDB', level: 'intermediate' },
+      { name: 'MySQL', level: 'intermediate' }
+    ]
+  }
+];
 
   return (
     <section id="skills" className={styles.skillsSection}>
@@ -97,12 +107,12 @@ const SkillsSection = () => {
           ))}
         </div>
         
-        <div className={styles.techStack}>
+         {/* <div className={styles.techStack}>
           <h3 className={styles.techStackTitle}>TECHNOLOGY STACK</h3>
           <div className={styles.techItems}>
             {['Java', 'Android SDK', 'Firebase', 'JavaScript', 'React', 
               'HTML5', 'CSS3', 'Node.js', 'SQL', 'MySQL', 'MongoDB', 
-              'REST APIs', 'Git', 'Gradle'].map((tech, i) => (
+              'REST APIs', 'Git', 'Gradle', 'TypeScript', 'Kotlin'].map((tech, i) => (
               <motion.div
                 key={i}
                 className={styles.techItem}
@@ -119,7 +129,7 @@ const SkillsSection = () => {
               </motion.div>
             ))}
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );

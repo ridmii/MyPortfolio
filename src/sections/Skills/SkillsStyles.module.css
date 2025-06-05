@@ -91,20 +91,28 @@
 .skillsList {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 .skillItem {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  padding: 0.8rem 1rem;
+  background: var(--skill-item-bg, #f8f8f8);
+  border-radius: 0.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.skillItem:hover {
+  transform: translateX(5px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .skillHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 0.3rem;
 }
 
 .skillName {
@@ -113,40 +121,37 @@
   font-weight: 500;
 }
 
-.skillValue {
-  font-size: 0.9rem;
+.proficiency {
+  font-size: 0.75rem;
   font-weight: 600;
-  color: var(--text-secondary);
+  padding: 0.3rem 0.8rem;
+  border-radius: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-.skillBar {
-  height: 6px;
-  background: var(--progress-bg);
-  border-radius: 3px;
-  overflow: hidden;
+.basic {
+  background: rgba(100, 100, 255, 0.1);
+  color: #6464ff;
+  border: 1px solid rgba(100, 100, 255, 0.3);
 }
 
-.skillLevel {
-  height: 100%;
-  border-radius: 3px;
+.intermediate {
+  background: rgba(100, 200, 100, 0.1);
+  color: #64c864;
+  border: 1px solid rgba(100, 200, 100, 0.3);
 }
 
-/* Skill level colors */
-.beginner { 
-  background: linear-gradient(90deg, var(--accent-color), var(--accent-secondary));
-  width: 50%; 
+.advanced {
+  background: rgba(255, 180, 0, 0.1);
+  color: #ffb400;
+  border: 1px solid rgba(255, 180, 0, 0.3);
 }
-.intermediate { 
-  background: linear-gradient(90deg, var(--accent-color), var(--accent-secondary));
-  width: 70%; 
-}
-.advanced { 
-  background: linear-gradient(90deg, var(--accent-color), var(--accent-secondary));
-  width: 85%; 
-}
-.expert { 
-  background: linear-gradient(90deg, var(--accent-color), var(--accent-secondary));
-  width: 95%; 
+
+.expert {
+  background: rgba(255, 80, 80, 0.1);
+  color: #ff5050;
+  border: 1px solid rgba(255, 80, 80, 0.3);
 }
 
 /* Tech Stack */
@@ -181,6 +186,11 @@
   font-weight: 500;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   border: 1px solid var(--pill-border);
+  transition: transform 0.2s ease;
+}
+
+.techItem:hover {
+  transform: translateY(-2px);
 }
 
 /* Dark mode adjustments */
@@ -188,10 +198,6 @@
   .category {
     background: var(--card-bg, #1a1a1a);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-  }
-
-  .skillBar {
-    background: #2d2d2d;
   }
 
   .sectionId {
@@ -206,14 +212,34 @@
     color: rgba(255, 255, 255, 0.9);
   }
 
-  .skillValue {
-    color: rgba(255, 255, 255, 0.7);
+  .skillItem {
+    background: #2a2a2a;
   }
 
   .techItem {
     background: #2a2a2a;
     color: #e0e0e0;
     border-color: #3a3a3a;
+  }
+
+  .basic {
+    background: rgba(100, 100, 255, 0.15);
+    border-color: rgba(100, 100, 255, 0.4);
+  }
+  
+  .intermediate {
+    background: rgba(100, 200, 100, 0.15);
+    border-color: rgba(100, 200, 100, 0.4);
+  }
+  
+  .advanced {
+    background: rgba(255, 180, 0, 0.15);
+    border-color: rgba(255, 180, 0, 0.4);
+  }
+  
+  .expert {
+    background: rgba(255, 80, 80, 0.15);
+    border-color: rgba(255, 80, 80, 0.4);
   }
 }
 
@@ -229,10 +255,6 @@
 
   .skillName {
     color: rgba(0, 0, 0, 0.9);
-  }
-
-  .skillValue {
-    color: rgba(0, 0, 0, 0.7);
   }
 
   .techItem {
@@ -272,5 +294,28 @@
   .techItem {
     padding: 0.5rem 1rem;
     font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .skillsSection {
+    padding: 3rem 1rem;
+  }
+
+  .sectionId {
+    font-size: 2rem;
+  }
+
+  .categoryTitle {
+    font-size: 1.3rem;
+  }
+
+  .skillName {
+    font-size: 0.9rem;
+  }
+
+  .proficiency {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.6rem;
   }
 }
