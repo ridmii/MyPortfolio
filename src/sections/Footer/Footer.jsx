@@ -34,7 +34,7 @@ function Footer() {
         transition={{ delay: 0.3, duration: 0.5 }}
         style={{ marginTop: "-2rem" }} // Add negative margin to move text up
       >
-        &copy; 2024 Ridmi Vancuylenburg. <br />
+        &copy; 2025 Ridmi Vancuylenburg. <br />
         All rights reserved.
       </motion.p>
     </motion.section>

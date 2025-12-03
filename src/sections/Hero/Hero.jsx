@@ -135,7 +135,7 @@ function Hero() {
             </motion.h1>
 
             <motion.h2 className={styles.subtitle} variants={itemVariants}>
-              Full-Stack Developer, Video Editor
+              Full-Stack Software Developer
             </motion.h2>
 
             <motion.p className={styles.description} variants={itemVariants}>
